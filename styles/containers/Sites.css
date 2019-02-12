@@ -1,0 +1,42 @@
+.sitesList {
+    margin: auto;
+    padding-top: 6rem;
+    width: 50%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+}
+
+@media (max-width: 768px) {
+    .sitesList {
+        grid-template-columns: none;
+    }
+}
+
+.sitesListItem {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    width: 75%;
+    padding-left: 25%;
+    display: inline-block;
+    word-break: break-all;
+}
+
+.siteLink {
+    font-size: 1.5rem;
+    color: #212121;
+    text-underline-color: #212121;
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;
+    font-family: 'Cutive Mono', monospace;
+}
+
+.siteLink:hover {
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;
+    color: #eeeeee;
+    text-underline-color: #eeeeee;
+    background-color: #212121;
+}

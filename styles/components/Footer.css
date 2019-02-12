@@ -1,0 +1,41 @@
+.footerContainer {
+    position: fixed;
+    bottom: 2rem;
+    right: 0;
+    height: 2rem;
+}
+
+.footerButton {
+    font-size: 1.5rem;
+    background: Transparent no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    margin-right: 4rem;
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;
+    padding: 0.1rem 0.25rem;
+    color: #90a4ae;
+    font-family: 'Cutive Mono', monospace;
+}
+
+.footerButton:hover:enabled {
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;
+    color: #263238;
+}
+
+.footerButton:active:enabled {
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;
+    opacity: 0.3;
+}
+
+.footerButton:disabled,
+.footerButton[disabled]{
+    cursor: default;
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;
+    opacity: 0.3;
+}

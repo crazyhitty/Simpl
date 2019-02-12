@@ -1,0 +1,37 @@
+.addContainer {
+    margin: auto;
+    padding-top: 6rem;
+    width: 50%;
+}
+
+.siteInputContainer {
+    width: 50%;
+    margin: auto;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.siteInput {
+    margin: auto;
+    width: 100%;
+    font-size: 1.5rem;
+    color: #212121;
+    text-underline-color: #212121;
+    font-family: 'Cutive Mono', monospace;
+    border: none;
+    background: none;
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;
+    border-bottom: 1px solid #90a4ae;
+}
+
+.siteInput:hover {
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;
+    border-bottom: 1px solid #263238;
+}
+
+::placeholder {
+    color: #90a4ae;
+    opacity: 1; /* Firefox */
+}
