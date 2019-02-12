@@ -4,6 +4,7 @@ import { inject, observer } from 'mobx-react';
 import { observable, computed } from 'mobx';
 import { validateUrl } from '../Utils';
 import Footer from '../components/Footer';
+import '../../styles/containers/Common.css';
 import '../../styles/containers/AddSite.css';
 
 @inject('sitesStore')
@@ -41,7 +42,7 @@ class AddSite extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className={'container'}>
         <div className={'addContainer'}>
           <div className={'siteInputContainer'}>
             <input

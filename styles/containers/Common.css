@@ -1,0 +1,10 @@
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.container {
+  animation-name: fadeIn;
+  animation-duration: 300ms;
+  animation-timing-function: ease-in-out;
+}

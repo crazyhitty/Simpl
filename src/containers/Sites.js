@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
 import { computed, toJS } from 'mobx';
 import Footer from '../components/Footer';
+import '../../styles/containers/Common.css';
 import '../../styles/containers/Sites.css';
 
 @inject('sitesStore')
@@ -57,7 +58,7 @@ class Sites extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className={`container`}>
         {this.sitesUi}
         <Footer
           primaryAction={'edit'}
