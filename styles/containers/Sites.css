@@ -40,3 +40,38 @@
     text-underline-color: #eeeeee;
     background-color: #212121;
 }
+
+.emptyContainer {
+    margin: auto;
+    padding-top: 6rem;
+    width: 50%;
+}
+
+.emptyButton {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    word-break: break-word;
+    font-size: 1.5rem;
+    text-underline-color: #212121;
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;
+    font-family: 'Cutive Mono', monospace;
+    background: Transparent no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    color: #90a4ae;
+}
+
+.emptyButton:hover:enabled {
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;
+    color: #263238;
+}
+
+.emptyButton:active:enabled {
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;
+    opacity: 0.3;
+}

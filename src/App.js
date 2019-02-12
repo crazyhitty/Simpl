@@ -9,7 +9,6 @@ import '../styles/fonts/Fonts.css';
 const UiState = {
   sites: 'sites',
   add: 'add',
-  edit: 'edit',
 };
 
 @observer
@@ -48,8 +47,6 @@ class App extends React.Component {
         return this.sitesUi();
       case UiState.add:
         return this.addUi();
-      case UiState.edit:
-        return undefined;
       default:
         throw new Error(`mainUi: Invalid UiState: ${this.uiState}`);
     }
