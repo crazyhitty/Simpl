@@ -13,6 +13,8 @@ class AddSite extends React.Component {
   @observable name = '';
   @observable url = '';
 
+  urlInput;
+
   static propTypes = {
     onDismiss: PropTypes.func,
     sitesStore: PropTypes.object,
@@ -26,11 +28,18 @@ class AddSite extends React.Component {
     this.url = event.target.value;
   };
 
+  handleOnNameKeyPress = (event) => {
+    if(event.key === 'Enter'){
+      this.urlInput.focus();
+    }
+  };
+
   onCancelClick = () => {
     if (this.props.onDismiss) this.props.onDismiss();
   };
 
   onDoneClick = () => {
+    if (this.isDoneButtonDisabled) return;
     this.props.sitesStore.add(this.name, this.url);
     if (this.props.onDismiss) this.props.onDismiss();
   };
@@ -52,10 +61,12 @@ class AddSite extends React.Component {
               maxLength="20"
               value={this.name}
               onChange={this.handleOnNameChange}
+              onKeyPress={this.handleOnNameKeyPress}
             />
           </div>
           <div className={'siteInputContainer'}>
             <input
+              ref={(input) => { this.urlInput = input; }}
               className={'siteInput'}
               type="url"
               placeholder="Website url"
