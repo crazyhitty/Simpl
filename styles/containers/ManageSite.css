@@ -4,6 +4,14 @@
     width: 50%;
 }
 
+@media (max-width: 768px) {
+    .addContainer {
+        margin: auto;
+        padding-top: 6rem;
+        width: 100%;
+    }
+}
+
 .siteInputContainer {
     width: 50%;
     margin: auto;

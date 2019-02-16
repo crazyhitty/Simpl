@@ -25,7 +25,8 @@
 .siteLink {
     font-size: 1.5rem;
     color: #212121;
-    text-underline-color: #212121;
+    text-decoration-line: underline;
+    text-decoration-color: #212121;
     padding-top: 0.1rem;
     padding-bottom: 0.1rem;
     transition-duration: 200ms;
@@ -37,7 +38,31 @@
     transition-duration: 200ms;
     transition-timing-function: ease-in-out;
     color: #eeeeee;
-    text-underline-color: #eeeeee;
+    text-decoration-line: underline;
+    text-decoration-color: #eeeeee;
+    background-color: #212121;
+}
+
+.siteLinkEdit {
+    font-size: 1.5rem;
+    color: #212121;
+    text-decoration-line: underline;
+    text-decoration-color: #212121;
+    text-decoration-style: dashed;
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;
+    font-family: 'Cutive Mono', monospace;
+}
+
+.siteLinkEdit:hover {
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;
+    color: #eeeeee;
+    text-decoration-line: underline;
+    text-decoration-color: #eeeeee;
+    text-decoration-style: dashed;
     background-color: #212121;
 }
 
@@ -52,7 +77,6 @@
     padding-bottom: 2rem;
     word-break: break-word;
     font-size: 1.5rem;
-    text-underline-color: #212121;
     transition-duration: 200ms;
     transition-timing-function: ease-in-out;
     font-family: 'Cutive Mono', monospace;
@@ -74,4 +98,12 @@
     transition-duration: 200ms;
     transition-timing-function: ease-in-out;
     opacity: 0.3;
+}
+
+/* Prevent the text contents of draggable elements from being selectable. */
+[draggable] {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 }

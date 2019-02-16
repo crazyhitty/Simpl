@@ -5,20 +5,39 @@ import { observable, computed } from 'mobx';
 import { validateUrl } from '../Utils';
 import Footer from '../components/Footer';
 import '../../styles/containers/Common.css';
-import '../../styles/containers/AddSite.css';
+import '../../styles/containers/ManageSite.css';
+
+export const MODES = {
+  add: 'add',
+  update: 'update',
+};
 
 @inject('sitesStore')
 @observer
-class AddSite extends React.Component {
+class ManageSite extends React.Component {
   @observable name = '';
   @observable url = '';
 
   urlInput;
 
   static propTypes = {
+    site: PropTypes.object,
+    mode: PropTypes.oneOf(MODES.add, MODES.edit),
     onDismiss: PropTypes.func,
     sitesStore: PropTypes.object,
   };
+
+  static defaultProps = {
+    mode: MODES.add,
+  };
+
+  constructor(props) {
+    super(props);
+    if (props.mode === MODES.update) {
+      this.name = props.site.name;
+      this.url = props.site.url;
+    }
+  }
 
   handleOnNameChange = (event) => {
     this.name = event.target.value;
@@ -40,7 +59,14 @@ class AddSite extends React.Component {
 
   onDoneClick = () => {
     if (this.isDoneButtonDisabled) return;
-    this.props.sitesStore.add(this.name, this.url);
+    switch (this.props.mode) {
+      case MODES.add:
+        this.props.sitesStore.add(this.name, this.url);
+        break;
+      case MODES.update:
+        this.props.sitesStore.update(this.props.site.key, this.name, this.url);
+        break;
+    }
     if (this.props.onDismiss) this.props.onDismiss();
   };
 
@@ -87,4 +113,4 @@ class AddSite extends React.Component {
   }
 }
 
-export default AddSite;
+export default ManageSite;

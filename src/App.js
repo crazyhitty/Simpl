@@ -3,28 +3,40 @@ import { observer, Provider } from 'mobx-react';
 import { observable, computed } from 'mobx';
 import stores from './stores';
 import Sites from './containers/Sites';
-import AddSite from './containers/AddSite';
+import ManageSite, { MODES } from './containers/ManageSite';
+import EditSites from './containers/EditSites';
 import '../styles/fonts/Fonts.css';
+import '../styles/containers/Common.css';
 
-const UiState = {
+const UI_STATE = {
   sites: 'sites',
-  add: 'add',
+  manage: 'manage',
+  edit: 'edit',
 };
 
 @observer
 class App extends React.Component {
-  @observable uiState = UiState.sites;
+  @observable uiState = UI_STATE.sites;
+  @observable selectedSite;
+  @observable mode;
 
   handleSitesOnEditClick = () => {
-    this.uiState = UiState.edit;
+    this.uiState = UI_STATE.edit;
   };
 
   handleSitesOnAddClick = () => {
-    this.uiState = UiState.add;
+    this.mode = MODES.add;
+    this.uiState = UI_STATE.manage;
   };
 
   handleAddSiteOnDismiss = () => {
-    this.uiState = UiState.sites;
+    this.uiState = UI_STATE.sites;
+  };
+
+  handleOnSiteClick = (site) => {
+    this.selectedSite = site;
+    this.mode = MODES.update;
+    this.uiState = UI_STATE.manage;
   };
 
   sitesUi = () => (
@@ -34,8 +46,17 @@ class App extends React.Component {
     />
   );
 
-  addUi = () => (
-    <AddSite
+  manageUi = () => (
+    <ManageSite
+      mode={this.mode}
+      site={this.selectedSite}
+      onDismiss={this.handleAddSiteOnDismiss}
+    />
+  );
+
+  editUi = () => (
+    <EditSites
+      onSiteClick={this.handleOnSiteClick}
       onDismiss={this.handleAddSiteOnDismiss}
     />
   );
@@ -43,10 +64,12 @@ class App extends React.Component {
   @computed
   get ui() {
     switch(this.uiState) {
-      case UiState.sites:
+      case UI_STATE.sites:
         return this.sitesUi();
-      case UiState.add:
-        return this.addUi();
+      case UI_STATE.manage:
+        return this.manageUi();
+      case UI_STATE.edit:
+        return this.editUi();
       default:
         throw new Error(`mainUi: Invalid UiState: ${this.uiState}`);
     }

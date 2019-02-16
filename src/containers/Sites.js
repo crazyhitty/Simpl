@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
-import { computed, toJS } from 'mobx';
+import { computed } from 'mobx';
 import Footer from '../components/Footer';
 import '../../styles/containers/Common.css';
 import '../../styles/containers/Sites.css';
@@ -48,7 +48,7 @@ class Sites extends React.Component {
 
   @computed
   get sitesUi() {
-    const sites = toJS(this.props.sitesStore.sites);
+    const { sites } = this.props.sitesStore;
     if (sites.length === 0) {
       return this.emptyView();
     } else {
@@ -56,15 +56,21 @@ class Sites extends React.Component {
     }
   }
 
+  @computed
+  get isEditButtonDisabled() {
+    return this.props.sitesStore.sites.length === 0;
+  }
+
   render() {
     return (
-      <div className={`container`}>
+      <div className={'container'}>
         {this.sitesUi}
         <Footer
           primaryAction={'edit'}
           secondaryAction={'add'}
           primaryActionOnClick={this.handleOnEditClick}
           secondaryActionOnClick={this.handleOnAddClick}
+          primaryActionDisabled={this.isEditButtonDisabled}
         />
       </div>
     );

@@ -24,20 +24,28 @@ class Footer extends React.Component {
 
     return (
       <div className={'footerContainer'}>
-        <button
-          className={'footerButton'}
-          onClick={primaryActionOnClick}
-          disabled={primaryActionDisabled}
-        >
-          {primaryAction}
-        </button>
-        <button
-          className={'footerButton'}
-          onClick={secondaryActionOnClick}
-          disabled={secondaryActionDisabled}
-        >
-          {secondaryAction}
-        </button>
+        {
+          primaryAction ? (
+            <button
+              className={'footerButton'}
+              onClick={primaryActionOnClick}
+              disabled={primaryActionDisabled}
+            >
+              {primaryAction}
+            </button>
+          ) : undefined
+        }
+        {
+          secondaryAction ? (
+            <button
+              className={'footerButton'}
+              onClick={secondaryActionOnClick}
+              disabled={secondaryActionDisabled}
+            >
+              {secondaryAction}
+            </button>
+          ) : undefined
+        }
       </div>
     );
   }
