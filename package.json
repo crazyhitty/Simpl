@@ -4,8 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack -w --display-error-details --progress --colors",
-    "start": "web-ext run -s extension/"
+    "build": "rm -rf extension/dist && webpack --display-error-details --progress --colors",
+    "build:watch": "npm run build -- -w",
+    "start": "npm run build && web-ext run -s extension/",
+    "start:watch": "npm run build:watch && web-ext run -s extension/",
+    "bundle": "./scripts/bundle.sh"
   },
   "author": "cr42yh17m4n@gmail.com",
   "license": "MPL-2.0",
@@ -17,16 +20,14 @@
     "babel-preset-react": "6.24.1",
     "babel-preset-stage-2": "6.24.1",
     "css-loader": "^2.1.0",
+    "mobx": "^5.9.0",
+    "mobx-react": "^5.4.3",
+    "prop-types": "^15.6.2",
     "react": "16.2.0",
     "react-dom": "16.2.0",
     "style-loader": "^0.23.1",
     "url-loader": "^1.1.2",
     "web-ext": "2.3.2",
-    "webpack": "3.10.0"
-  },
-  "dependencies": {
-    "mobx": "^5.9.0",
-    "mobx-react": "^5.4.3",
-    "prop-types": "^15.6.2"
+    "webpack": "^3.10.0"
   }
 }
