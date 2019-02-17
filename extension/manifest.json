@@ -1,5 +1,5 @@
 {
-  "manifest_version": 1,
+  "manifest_version": 2,
   "name": "Simpl",
   "version": "0.0.1",
   "chrome_url_overrides": {
