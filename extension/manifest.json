@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Simpl",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "chrome_url_overrides": {
       "newtab": "simpl.html"
   },

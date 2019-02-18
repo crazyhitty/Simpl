@@ -1,13 +1,12 @@
 {
   "name": "Simpl",
-  "version": "0.0.1",
-  "description": "",
+  "version": "1.0.0",
+  "description": "A minimal new tab extension",
   "main": "index.js",
   "scripts": {
     "build": "rm -rf extension/dist && webpack --display-error-details --progress --colors",
     "build:watch": "npm run build -- -w",
     "start": "npm run build && web-ext run -s extension/",
-    "start:watch": "npm run build:watch && web-ext run -s extension/",
     "clean": "rm -rf extension/dist && rm -rf node_modules && npm install",
     "bundle": "./bundle.sh"
   },
