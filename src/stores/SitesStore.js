@@ -42,7 +42,7 @@ class SitesStore {
       });
   });
 
-  add = (name, url) => {
+  add = (name, url) => (
     this.get()
       .then((sites) => {
         sites.push({
@@ -52,12 +52,9 @@ class SitesStore {
         });
         return browser.storage.local.set({ savedSites: sites });
       })
-      .catch((error) => {
-        console.error('Error while adding new site; cause:', error.message);
-      });
-  };
+  );
 
-  update = (key, name, url) => {
+  update = (key, name, url) => (
     this.get()
       .then((sites) => {
         const siteIndexToUpdate = sites.findIndex(site => site.key === key);
@@ -68,10 +65,7 @@ class SitesStore {
         };
         return browser.storage.local.set({ savedSites: sites });
       })
-      .catch((error) => {
-        console.error('Error while adding new site; cause:', error.message);
-      });
-  };
+  );
 
   delete = (key) => (
     this.get()

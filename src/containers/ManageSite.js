@@ -61,13 +61,26 @@ class ManageSite extends React.Component {
     if (this.isDoneButtonDisabled) return;
     switch (this.props.mode) {
       case MODES.add:
-        this.props.sitesStore.add(this.name, this.url);
+        this.props.sitesStore.add(this.name, this.url)
+          .then(() => {
+            if (this.props.onDismiss) this.props.onDismiss();
+          })
+          .catch((error) => {
+            console.error('ManageSite', 'Error while adding site with name:', this.name, 'url:', this.url, '; cause:', error.message);
+            if (this.props.onDismiss) this.props.onDismiss();
+          });
         break;
       case MODES.update:
-        this.props.sitesStore.update(this.props.site.key, this.name, this.url);
+        this.props.sitesStore.update(this.props.site.key, this.name, this.url)
+          .then(() => {
+            if (this.props.onDismiss) this.props.onDismiss();
+          })
+          .catch((error) => {
+            console.error('ManageSite', 'Error while updating site with key:', this.props.site.key, '; cause:', error.message);
+            if (this.props.onDismiss) this.props.onDismiss();
+          });
         break;
     }
-    if (this.props.onDismiss) this.props.onDismiss();
   };
 
   onDeleteClick = () => {
