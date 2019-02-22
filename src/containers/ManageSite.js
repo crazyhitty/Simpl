@@ -70,6 +70,17 @@ class ManageSite extends React.Component {
     if (this.props.onDismiss) this.props.onDismiss();
   };
 
+  onDeleteClick = () => {
+    this.props.sitesStore.delete(this.props.site.key)
+      .then(() => {
+        this.props.onDismiss();
+      })
+      .catch((error) => {
+        console.error('ManageSite', 'Error while deleting site with key:', this.props.site.key, '; cause:', error.message);
+        this.props.onDismiss();
+      });
+  };
+
   @computed
   get isDoneButtonDisabled() {
     return this.name === '' || !validateUrl(this.url);
@@ -104,9 +115,11 @@ class ManageSite extends React.Component {
         <Footer
           primaryAction={'cancel'}
           secondaryAction={'done'}
+          tertiaryAction={this.props.mode === MODES.update ? 'delete' : undefined}
           primaryActionOnClick={this.onCancelClick}
           secondaryActionOnClick={this.onDoneClick}
           secondaryActionDisabled={this.isDoneButtonDisabled}
+          tertiaryActionOnClick={this.onDeleteClick}
         />
       </div>
     );

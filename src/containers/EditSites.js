@@ -30,7 +30,6 @@ class EditSites extends React.Component {
           <div id={`site${index}`} className={'sitesListItem'}>
             <a
               className={'siteLinkEdit'}
-              href={'#'}
               onClick={() => { this.onSiteLinkClick(site); }}
             >
               {site.name}

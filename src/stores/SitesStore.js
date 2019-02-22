@@ -72,6 +72,15 @@ class SitesStore {
         console.error('Error while adding new site; cause:', error.message);
       });
   };
+
+  delete = (key) => (
+    this.get()
+      .then((sites) => {
+        const siteIndexToUpdate = sites.findIndex(site => site.key === key);
+        sites.splice(siteIndexToUpdate, 1);
+        return browser.storage.local.set({ savedSites: sites });
+      })
+  );
 }
 
 export default SitesStore;
