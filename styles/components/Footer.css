@@ -1,8 +1,17 @@
 .footerContainer {
     position: fixed;
     bottom: 2rem;
-    right: 0;
     height: 2rem;
+}
+
+.footerContainerStart {
+    position: fixed;
+    left: 4rem;
+}
+
+.footerContainerEnd {
+    position: fixed;
+    right: 0;
 }
 
 .footerButton {
