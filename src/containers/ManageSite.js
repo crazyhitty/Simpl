@@ -86,11 +86,11 @@ class ManageSite extends React.Component {
   onDeleteClick = () => {
     this.props.sitesStore.delete(this.props.site.key)
       .then(() => {
-        this.props.onDismiss();
+        if (this.props.onDismiss) this.props.onDismiss();
       })
       .catch((error) => {
         console.error('ManageSite', 'Error while deleting site with key:', this.props.site.key, '; cause:', error.message);
-        this.props.onDismiss();
+        if (this.props.onDismiss) this.props.onDismiss();
       });
   };
 
