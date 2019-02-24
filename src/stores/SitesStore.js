@@ -75,6 +75,28 @@ class SitesStore {
         return browser.storage.local.set({ savedSites: sites });
       })
   );
+
+  swap = (fromKey, toKey) => (
+    this.get()
+      .then((sites) => {
+        const fromSiteIndex = sites.findIndex(site => site.key === fromKey);
+        const toSiteIndex = sites.findIndex(site => site.key === toKey);
+        // Swap the data b/w fromSiteIndex and toSiteIndex.
+        [sites[fromSiteIndex], sites[toSiteIndex]] = [
+          {
+            key: toKey,
+            name: sites[toSiteIndex].name,
+            url: sites[toSiteIndex].url,
+          },
+          {
+            key: fromKey,
+            name: sites[fromSiteIndex].name,
+            url: sites[fromSiteIndex].url,
+          }
+        ];
+        return browser.storage.local.set({ savedSites: sites });
+      })
+  );
 }
 
 export default SitesStore;
