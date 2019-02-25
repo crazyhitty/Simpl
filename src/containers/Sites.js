@@ -24,25 +24,22 @@ class Sites extends React.Component {
   };
 
   emptyView = () => (
-    <div className={'emptyContainer'}>
-      <button
-        className={'emptyButton'}
-        onClick={this.handleOnAddClick}
-      >
+    <div className="emptyContainer">
+      <button className="emptyButton" onClick={this.handleOnAddClick}>
         {"Looks like you haven't added any website yet, click here to add one."}
       </button>
     </div>
   );
 
-  siteList = sites => (
-    <div className={'sitesList'}>
-      {
-        sites.map(site => (
-          <div className={'sitesListItem'}>
-            <a className={'siteLink'} href={site.url}>{site.name}</a>
-          </div>
-        ))
-      }
+  siteList = (sites) => (
+    <div className="sitesList">
+      {sites.map((site) => (
+        <div className="sitesListItem">
+          <a className="siteLink" href={site.url}>
+            {site.name}
+          </a>
+        </div>
+      ))}
     </div>
   );
 
@@ -51,9 +48,8 @@ class Sites extends React.Component {
     const { sites } = this.props.sitesStore;
     if (sites.length === 0) {
       return this.emptyView();
-    } else {
-      return this.siteList(sites);
     }
+    return this.siteList(sites);
   }
 
   @computed
@@ -63,11 +59,11 @@ class Sites extends React.Component {
 
   render() {
     return (
-      <div className={'container'}>
+      <div className="container">
         {this.sitesUi}
         <Footer
-          primaryAction={'edit'}
-          secondaryAction={'add'}
+          primaryAction="edit"
+          secondaryAction="add"
           primaryActionOnClick={this.handleOnEditClick}
           secondaryActionOnClick={this.handleOnAddClick}
           primaryActionDisabled={this.isEditButtonDisabled}

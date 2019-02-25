@@ -37,10 +37,7 @@ module.exports = {
   resolve: {
     // This allows you to import modules just like you would in a NodeJS app.
     extensions: ['.js', '.jsx'],
-    modules: [
-      'src',
-      'node_modules',
-    ],
+    modules: ['src', 'node_modules'],
   },
   plugins: [
     // Since some NodeJS modules expect to be running in Node, it is helpful

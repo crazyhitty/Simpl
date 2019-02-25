@@ -63,7 +63,7 @@ class App extends React.Component {
 
   @computed
   get ui() {
-    switch(this.uiState) {
+    switch (this.uiState) {
       case UI_STATE.sites:
         return this.sitesUi();
       case UI_STATE.manage:
@@ -73,14 +73,10 @@ class App extends React.Component {
       default:
         throw new Error(`mainUi: Invalid UiState: ${this.uiState}`);
     }
-  };
+  }
 
   render() {
-    return (
-      <Provider {...stores}>
-        {this.ui}
-      </Provider>
-    );
+    return <Provider {...stores}>{this.ui}</Provider>;
   }
 }
 

@@ -48,7 +48,7 @@ class ManageSite extends React.Component {
   };
 
   handleOnNameKeyPress = (event) => {
-    if(event.key === 'Enter'){
+    if (event.key === 'Enter') {
       this.urlInput.focus();
     }
   };
@@ -61,22 +61,38 @@ class ManageSite extends React.Component {
     if (this.isDoneButtonDisabled) return;
     switch (this.props.mode) {
       case MODES.add:
-        this.props.sitesStore.add(this.name, this.url)
+        this.props.sitesStore
+          .add(this.name, this.url)
           .then(() => {
             if (this.props.onDismiss) this.props.onDismiss();
           })
           .catch((error) => {
-            console.error('ManageSite', 'Error while adding site with name:', this.name, 'url:', this.url, '; cause:', error.message);
+            console.error(
+              'ManageSite',
+              'Error while adding site with name:',
+              this.name,
+              'url:',
+              this.url,
+              '; cause:',
+              error.message,
+            );
             if (this.props.onDismiss) this.props.onDismiss();
           });
         break;
       case MODES.update:
-        this.props.sitesStore.update(this.props.site.key, this.name, this.url)
+        this.props.sitesStore
+          .update(this.props.site.key, this.name, this.url)
           .then(() => {
             if (this.props.onDismiss) this.props.onDismiss();
           })
           .catch((error) => {
-            console.error('ManageSite', 'Error while updating site with key:', this.props.site.key, '; cause:', error.message);
+            console.error(
+              'ManageSite',
+              'Error while updating site with key:',
+              this.props.site.key,
+              '; cause:',
+              error.message,
+            );
             if (this.props.onDismiss) this.props.onDismiss();
           });
         break;
@@ -84,12 +100,19 @@ class ManageSite extends React.Component {
   };
 
   onDeleteClick = () => {
-    this.props.sitesStore.delete(this.props.site.key)
+    this.props.sitesStore
+      .delete(this.props.site.key)
       .then(() => {
         if (this.props.onDismiss) this.props.onDismiss();
       })
       .catch((error) => {
-        console.error('ManageSite', 'Error while deleting site with key:', this.props.site.key, '; cause:', error.message);
+        console.error(
+          'ManageSite',
+          'Error while deleting site with key:',
+          this.props.site.key,
+          '; cause:',
+          error.message,
+        );
         if (this.props.onDismiss) this.props.onDismiss();
       });
   };
@@ -116,7 +139,9 @@ class ManageSite extends React.Component {
           </div>
           <div className={'siteInputContainer'}>
             <input
-              ref={(input) => { this.urlInput = input; }}
+              ref={(input) => {
+                this.urlInput = input;
+              }}
               className={'siteInput'}
               type="url"
               placeholder="Website url"
@@ -128,7 +153,9 @@ class ManageSite extends React.Component {
         <Footer
           primaryAction={'cancel'}
           secondaryAction={'done'}
-          tertiaryAction={this.props.mode === MODES.update ? 'delete' : undefined}
+          tertiaryAction={
+            this.props.mode === MODES.update ? 'delete' : undefined
+          }
           primaryActionOnClick={this.onCancelClick}
           secondaryActionOnClick={this.onDoneClick}
           secondaryActionDisabled={this.isDoneButtonDisabled}

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../../styles/components/Footer.css'
+import '../../styles/components/Footer.css';
 
 class Footer extends React.Component {
   static propTypes = {
@@ -31,41 +31,41 @@ class Footer extends React.Component {
     return (
       <div className={'footerContainer'}>
         <div className={'footerContainerStart'}>
-          {
-            tertiaryAction ? (
-              <button
-                className={'footerButton'}
-                onClick={tertiaryActionOnClick}
-                disabled={tertiaryActionDisabled}
-              >
-                {tertiaryAction}
-              </button>
-            ) : undefined
-          }
+          {tertiaryAction ? (
+            <button
+              className={'footerButton'}
+              onClick={tertiaryActionOnClick}
+              disabled={tertiaryActionDisabled}
+            >
+              {tertiaryAction}
+            </button>
+          ) : (
+            undefined
+          )}
         </div>
         <div className={'footerContainerEnd'}>
-          {
-            primaryAction ? (
-              <button
-                className={'footerButton'}
-                onClick={primaryActionOnClick}
-                disabled={primaryActionDisabled}
-              >
-                {primaryAction}
-              </button>
-            ) : undefined
-          }
-          {
-            secondaryAction ? (
-              <button
-                className={'footerButton'}
-                onClick={secondaryActionOnClick}
-                disabled={secondaryActionDisabled}
-              >
-                {secondaryAction}
-              </button>
-            ) : undefined
-          }
+          {primaryAction ? (
+            <button
+              className={'footerButton'}
+              onClick={primaryActionOnClick}
+              disabled={primaryActionDisabled}
+            >
+              {primaryAction}
+            </button>
+          ) : (
+            undefined
+          )}
+          {secondaryAction ? (
+            <button
+              className={'footerButton'}
+              onClick={secondaryActionOnClick}
+              disabled={secondaryActionDisabled}
+            >
+              {secondaryAction}
+            </button>
+          ) : (
+            undefined
+          )}
         </div>
       </div>
     );

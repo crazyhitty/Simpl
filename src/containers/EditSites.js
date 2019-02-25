@@ -15,22 +15,22 @@ class EditSites extends React.Component {
     sitesStore: PropTypes.object,
   };
 
-  onDragStart = key => (event) => {
+  onDragStart = (key) => (event) => {
     console.log('onDragStart: called; dragging key:', key);
-    event.dataTransfer.setData("dragItemKey", key);
+    event.dataTransfer.setData('dragItemKey', key);
   };
 
-  onDragOver = key => (event) => {
+  onDragOver = (key) => (event) => {
     console.log('onDragOver: called; dragging key:', key);
     event.preventDefault(); // Necessary. Allows us to drop.
     return false;
   };
 
-  onDrop = toKey => (event) => {
+  onDrop = (toKey) => (event) => {
     console.log('onDrop: called; dragged on item with key:', toKey);
     event.preventDefault();
 
-    const fromKey = event.dataTransfer.getData("dragItemKey");
+    const fromKey = event.dataTransfer.getData('dragItemKey');
 
     if (fromKey !== toKey) {
       console.log('onDrop: swapping fromKey:', fromKey, '; toKey:', toKey);
@@ -43,29 +43,27 @@ class EditSites extends React.Component {
     if (this.props.onDismiss) this.props.onDismiss();
   };
 
-  onSiteLinkClick = site => () => {
+  onSiteLinkClick = (site) => () => {
     if (this.props.onSiteClick) this.props.onSiteClick(site);
   };
 
-  siteList = sites => (
+  siteList = (sites) => (
     <div className={'sitesList'}>
-      {
-        sites.map(site => (
-          <div className={'sitesListItem'}>
-            <a
-              id={site.key}
-              className={'siteLinkEdit'}
-              draggable
-              onDragStart={this.onDragStart(site.key)}
-              onDragOver={this.onDragOver(site.key)}
-              onDrop={this.onDrop(site.key)}
-              onClick={this.onSiteLinkClick(site)}
-            >
-              {site.name}
-            </a>
-          </div>
-        ))
-      }
+      {sites.map((site) => (
+        <div className={'sitesListItem'}>
+          <a
+            id={site.key}
+            className={'siteLinkEdit'}
+            draggable
+            onDragStart={this.onDragStart(site.key)}
+            onDragOver={this.onDragOver(site.key)}
+            onDrop={this.onDrop(site.key)}
+            onClick={this.onSiteLinkClick(site)}
+          >
+            {site.name}
+          </a>
+        </div>
+      ))}
     </div>
   );
 
