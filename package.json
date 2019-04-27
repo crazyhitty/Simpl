@@ -8,9 +8,10 @@
   "license": "MIT",
   "scripts": {
     "start": "web-ext run -v -s build/",
-    "build": "rm -rf web-ext-artifacts/ && react-app-rewired build && web-ext build -v -s build/",
+    "build": "react-app-rewired build",
     "test": "react-app-rewired test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "release": "rm -rf web-ext-artifacts/ && npm build && web-ext build -v -s build/"
   },
   "eslintConfig": {
     "extends": "react-app"
