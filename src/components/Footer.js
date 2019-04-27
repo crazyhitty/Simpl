@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../../styles/components/Footer.css';
+import '../styles/components/Footer.css';
 
 class Footer extends React.Component {
   static propTypes = {

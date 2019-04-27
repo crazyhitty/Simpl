@@ -1,12 +1,10 @@
 {
-  "presets": [
-    ["env", {
-        "targets": {
-            "firefox": 57
-        }
-    }],
-    "stage-2",
-    "react"
-  ],
-  "plugins": ["transform-decorators-legacy"]
+  "plugins": [
+    [
+      "@babel/plugin-proposal-decorators",
+      {
+        "legacy": true
+      }
+    ]
+  ]
 }

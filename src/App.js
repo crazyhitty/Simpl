@@ -5,8 +5,8 @@ import stores from './stores';
 import Sites from './containers/Sites';
 import ManageSite, { MODES } from './containers/ManageSite';
 import EditSites from './containers/EditSites';
-import '../styles/fonts/Fonts.css';
-import '../styles/containers/Common.css';
+import './styles/fonts/Fonts.css';
+import './styles/containers/Common.css';
 
 const UI_STATE = {
   sites: 'sites',

@@ -18,6 +18,10 @@ class SitesStore {
     });
   }
 
+  /*eslint-disable no-undef*/
+  getBrowser = () => browser;
+  /*eslint-enable no-undef*/
+
   /**
    * Listen for any change in localStorage.
    * @param {Function} event - Contains updated values.
@@ -36,7 +40,7 @@ class SitesStore {
       event(changes.savedSites.newValue);
     };
 
-    this.browserStorageChangeListener = browser.storage.onChanged.addListener(
+    this.browserStorageChangeListener = this.getBrowser().storage.onChanged.addListener(
       browserStorageChangeEvent,
     );
   };
@@ -48,8 +52,8 @@ class SitesStore {
    */
   get = () =>
     new Promise((resolve) => {
-      browser.storage.local
-        .get('savedSites')
+      this.getBrowser()
+        .storage.local.get('savedSites')
         .then((data) => {
           console.log('getSites', data.savedSites);
           resolve(data.savedSites || []);
@@ -76,7 +80,7 @@ class SitesStore {
         name,
         url,
       });
-      return browser.storage.local.set({ savedSites: sites });
+      return this.getBrowser().storage.local.set({ savedSites: sites });
     });
 
   /**
@@ -95,7 +99,7 @@ class SitesStore {
         name,
         url,
       };
-      return browser.storage.local.set({ savedSites: sites });
+      return this.getBrowser().storage.local.set({ savedSites: sites });
     });
 
   /**
@@ -107,7 +111,7 @@ class SitesStore {
     this.get().then((sites) => {
       const siteIndexToUpdate = sites.findIndex((site) => site.key === key);
       sites.splice(siteIndexToUpdate, 1);
-      return browser.storage.local.set({ savedSites: sites });
+      return this.getBrowser().storage.local.set({ savedSites: sites });
     });
 
   /**
@@ -134,7 +138,9 @@ class SitesStore {
           url: sites[fromSiteIndex].url,
         },
       ];
-      return browser.storage.local.set({ savedSites: sitesToBeUpdated });
+      return this.getBrowser().storage.local.set({
+        savedSites: sitesToBeUpdated,
+      });
     });
 }
 

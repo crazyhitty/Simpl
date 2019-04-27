@@ -4,8 +4,8 @@ import { inject, observer } from 'mobx-react';
 import { observable, computed } from 'mobx';
 import { validateUrl } from '../Utils';
 import Footer from '../components/Footer';
-import '../../styles/containers/Common.css';
-import '../../styles/containers/ManageSite.css';
+import '../styles/containers/Common.css';
+import '../styles/containers/ManageSite.css';
 
 export const MODES = {
   add: 'add',

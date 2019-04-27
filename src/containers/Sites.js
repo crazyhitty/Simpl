@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
 import { computed } from 'mobx';
 import Footer from '../components/Footer';
-import '../../styles/containers/Common.css';
-import '../../styles/containers/Sites.css';
+import '../styles/containers/Common.css';
+import '../styles/containers/Sites.css';
 
 @inject('sitesStore')
 @observer
