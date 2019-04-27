@@ -2,25 +2,30 @@
 
 Just a minimal new tab extension for firefox showcasing your favorite websites.
 
+![Simpl screenshot](.github/simpl-screenshot-home.png)
+
 ## Usage
 
 Follow these steps to run the extension locally:
 
 ```
-  // Install the node modules
-  npm install
+// Install the node modules.
+npm install
 
-  // Transpile and bundle react code using babel and webpack so that is can run without the need of dev server.
-  npm build
+// Transpile and bundle react code using babel and webpack so that is can run without
+// the need of dev server.
+npm build
 
-  // Run the extension in firefox. It will spawn a new firefox instance. Just open new tab in firefox to check it out :)
-  npm start
+// Run the extension in firefox. It will spawn a new firefox instance. Just open a
+// new tab in firefox to check it out :)
+npm start
 ```
 
 To bundle the extension for release, use this script:
 
 ```
-  npm run release
+// Create a release zip file for extension in 'web-ext-artifacts' directory.
+npm run release
 ```
 
 To run tests, just run `npm test`
