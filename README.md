@@ -14,7 +14,7 @@ npm install
 
 // Transpile and bundle react code using babel and webpack so that is can run without
 // the need of dev server.
-npm build
+npm run build
 
 // Run the extension in firefox. It will spawn a new firefox instance. Just open a
 // new tab in firefox to check it out :)
