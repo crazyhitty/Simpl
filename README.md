@@ -2,6 +2,8 @@
 
 Just a minimal new tab extension for firefox showcasing your favorite websites.
 
+[Grab it for firefox from here.](https://addons.mozilla.org/en-US/firefox/addon/simpl-new-tab/)
+
 ![Simpl screenshot](.github/simpl-screenshot-home.png)
 
 ## Usage
