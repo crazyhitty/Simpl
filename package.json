@@ -1,6 +1,6 @@
 {
   "name": "Simpl",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A minimal new tab extension",
   "private": true,
   "homepage": ".",
