@@ -13,7 +13,7 @@
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
     "release": "rm -rf web-ext-artifacts/ && npm run build && web-ext build -v -s build/",
-    "packageSourceCode": "rm -rf simpl-source-code.zip && zip -r simpl-source-code.zip .env .prettierrc .babelrc .eslintrc.json LICENSE.md README.md config-overrides.js package-lock.json package.json public src/"
+    "packageSourceCode": "rm -rf simpl-source-code.zip && git archive -o simpl-source-code.zip HEAD"
   },
   "eslintConfig": {
     "extends": "react-app"
