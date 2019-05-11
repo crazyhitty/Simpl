@@ -22,7 +22,7 @@ class ManageSite extends React.Component {
 
   static propTypes = {
     site: PropTypes.object,
-    mode: PropTypes.oneOf(MODES.add, MODES.edit),
+    mode: PropTypes.oneOf([MODES.add, MODES.edit]),
     onDismiss: PropTypes.func,
     sitesStore: PropTypes.object,
   };
@@ -96,6 +96,8 @@ class ManageSite extends React.Component {
             if (this.props.onDismiss) this.props.onDismiss();
           });
         break;
+      default:
+        throw new Error(`Invalid mode: ${this.props.mode}`);
     }
   };
 

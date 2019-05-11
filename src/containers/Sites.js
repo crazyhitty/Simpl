@@ -33,8 +33,8 @@ class Sites extends React.Component {
 
   siteList = (sites) => (
     <div className="sitesList">
-      {sites.map((site) => (
-        <div className="sitesListItem">
+      {sites.map((site, index) => (
+        <div key={index} className="sitesListItem">
           <a className="siteLink" href={site.url}>
             {site.name}
           </a>

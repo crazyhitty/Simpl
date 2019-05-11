@@ -1,4 +1,5 @@
 import { observable } from 'mobx';
+import { KEYS } from '../storage/LocalStorage';
 import { randomKey } from '../Utils';
 
 /**
@@ -7,9 +8,11 @@ import { randomKey } from '../Utils';
 class SitesStore {
   @observable sites = [];
 
-  browserStorageChangeListener;
+  localStorage;
 
-  constructor() {
+  constructor(localStorage) {
+    this.localStorage = localStorage;
+
     this.get().then((sites) => {
       this.sites = sites;
       this.sitesUpdatedListener((updatedSites) => {
@@ -18,31 +21,19 @@ class SitesStore {
     });
   }
 
-  /*eslint-disable no-undef*/
-  getBrowser = () => browser;
-  /*eslint-enable no-undef*/
-
   /**
    * Listen for any change in localStorage.
    * @param {Function} event - Contains updated values.
    */
   sitesUpdatedListener = (event) => {
-    if (this.browserStorageChangeListener) {
-      console.warn('sitesUpdatedListener: already initialized!!!');
-      return;
-    }
-
     console.log(
       'sitesUpdatedListener: started listening for any changes done in savedSites',
     );
-    const browserStorageChangeEvent = (changes, area) => {
-      console.log('sitesUpdatedListener', changes, area);
-      event(changes.savedSites.newValue);
+    const localStorageChangeEvent = (value) => {
+      console.log('sitesUpdatedListener', value);
+      event(value);
     };
-
-    this.browserStorageChangeListener = this.getBrowser().storage.onChanged.addListener(
-      browserStorageChangeEvent,
-    );
+    this.localStorage.subscribe('savedSites', localStorageChangeEvent);
   };
 
   /**
@@ -52,11 +43,11 @@ class SitesStore {
    */
   get = () =>
     new Promise((resolve) => {
-      this.getBrowser()
-        .storage.local.get('savedSites')
+      this.localStorage
+        .get(KEYS.SAVED_SITES)
         .then((data) => {
-          console.log('getSites', data.savedSites);
-          resolve(data.savedSites || []);
+          console.log('getSites', data);
+          resolve(data || []);
         })
         .catch((error) => {
           console.error(
@@ -80,7 +71,7 @@ class SitesStore {
         name,
         url,
       });
-      return this.getBrowser().storage.local.set({ savedSites: sites });
+      return this.localStorage.set(KEYS.SAVED_SITES, sites);
     });
 
   /**
@@ -99,7 +90,7 @@ class SitesStore {
         name,
         url,
       };
-      return this.getBrowser().storage.local.set({ savedSites: sites });
+      return this.localStorage.set(KEYS.SAVED_SITES, sites);
     });
 
   /**
@@ -111,7 +102,7 @@ class SitesStore {
     this.get().then((sites) => {
       const siteIndexToUpdate = sites.findIndex((site) => site.key === key);
       sites.splice(siteIndexToUpdate, 1);
-      return this.getBrowser().storage.local.set({ savedSites: sites });
+      return this.localStorage.set(KEYS.SAVED_SITES, sites);
     });
 
   /**
@@ -138,9 +129,7 @@ class SitesStore {
           url: sites[fromSiteIndex].url,
         },
       ];
-      return this.getBrowser().storage.local.set({
-        savedSites: sitesToBeUpdated,
-      });
+      return this.localStorage.set(KEYS.SAVED_SITES, sitesToBeUpdated);
     });
 }
 
