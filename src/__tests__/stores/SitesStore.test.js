@@ -1,13 +1,14 @@
 import SitesStore from '../../stores/SitesStore';
-
-const stubMockMemberFunction = (object, functionName, functionValue) => {
-  Object.defineProperty(object, functionName, {
-    value: functionValue,
-    writable: true,
-  });
-};
+import LocalStorage from '../../storage/LocalStorage';
 
 describe('SitesStore should add, get, update, delete and swap sites successfully', () => {
+  const localStorage = new LocalStorage();
+  localStorage.subscribe = jest.fn();
+  localStorage.get = jest.fn(() => Promise.resolve(sites));
+  localStorage.set = jest.fn((key, data) => {
+    sites = data;
+  });
+
   const googleSite = {
     name: 'google',
     url: 'https://www.google.com',
@@ -20,23 +21,7 @@ describe('SitesStore should add, get, update, delete and swap sites successfully
 
   let sites = [];
 
-  const sitesStore = new SitesStore();
-
-  const stubBrowserLocalStorageApi = () => {
-    const getBrowser = jest.fn(() => ({
-      storage: {
-        local: {
-          get: () => Promise.resolve({ savedSites: sites }),
-          set: (obj) => {
-            sites = obj.savedSites;
-          },
-        },
-      },
-    }));
-    stubMockMemberFunction(sitesStore, 'getBrowser', getBrowser);
-  };
-
-  stubBrowserLocalStorageApi();
+  const sitesStore = new SitesStore(localStorage);
 
   it('add() should not crash', async () => {
     const addGoogleSitePromise = sitesStore.add(
