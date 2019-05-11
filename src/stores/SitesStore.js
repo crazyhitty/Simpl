@@ -1,5 +1,5 @@
 import { observable } from 'mobx';
-import LocalStorage, { KEYS } from '../storage/LocalStorage';
+import { KEYS } from '../storage/LocalStorage';
 import { randomKey } from '../Utils';
 
 /**
@@ -8,9 +8,11 @@ import { randomKey } from '../Utils';
 class SitesStore {
   @observable sites = [];
 
-  localStorage = new LocalStorage();
+  localStorage;
 
-  constructor() {
+  constructor(localStorage) {
+    this.localStorage = localStorage;
+
     this.get().then((sites) => {
       this.sites = sites;
       this.sitesUpdatedListener((updatedSites) => {
